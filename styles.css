@@ -30,3 +30,7 @@
   flex: 1;
   border: 0.5px solid black;
 }
+
+.cell:hover {
+  background-color: #c5ebf9;
+}

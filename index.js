@@ -32,6 +32,3 @@ for (let x = 0; x < size; x++) {
   // Add the row to the container
   container.appendChild(row);
 }
-
-// Review the DOM
-console.log(sketchPad);

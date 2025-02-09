@@ -3,6 +3,8 @@
   padding: 0;
   box-sizing: border-box;
   height: 100%;
+
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #sketch-pad {
@@ -23,14 +25,18 @@
 
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
+}
+
+#header #display {
+  font-size: 18px;
 }
 
 #header #reset {
   border: none;
-  padding: 5px;
+  padding: 0 10px;
   font-weight: 900;
-  background-color: #c5ebf9;
+  background-color: #d4c5f9;
 }
 
 /* Container */

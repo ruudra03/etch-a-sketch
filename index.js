@@ -5,15 +5,15 @@ console.log("JavaScript loaded.");
 const sketchPad = document.querySelector("#sketch-pad");
 
 // Container dimensions
-let size = 16;
+const DEFAULT_SIZE = 16;
 const MAX_SIZE = 100;
 
 // Create the header
 let header = document.createElement("div");
 header.setAttribute("id", "header");
 
-let display = document.createElement("span"); // to display current dimensions
-display.textContent = `Dimensions: ${size}x${size}`;
+let display = document.createElement("div"); // to display current dimensions
+display.setAttribute("id", "display");
 
 let button = document.createElement("button"); // to allow changing the dimensions
 button.setAttribute("id", "reset");
@@ -36,13 +36,13 @@ function generateContainer(size) {
   for (let x = 0; x < size; x++) {
     // Create rows
     let row = document.createElement("div");
-    row.setAttribute("x", `${x + 1}`); // provide unique row number
+    row.setAttribute("x", `${x + 1}`); // provide unique cell position
     row.classList.add("row");
 
     for (let y = 0; y < size; y++) {
       // Create cells
       let cell = document.createElement("div");
-      cell.setAttribute("y", `${y + 1}`); // provide unique cell number
+      cell.setAttribute("y", `${y + 1}`); // provide unique cell position
       cell.classList.add("cell");
 
       // Add the cell to the corresponding row
@@ -55,12 +55,17 @@ function generateContainer(size) {
 
   // Add the container
   sketchPad.appendChild(container);
+
+  // Set display
+  let display = sketchPad.querySelector("#display");
+  display.textContent = `Dimensions: ${size}x${size}`;
 }
 
 // Initialise the container
-generateContainer(size); // default size
+generateContainer(DEFAULT_SIZE);
 
-const reset = document.querySelector("#reset");
+// Allow change of container dimensions
+const reset = sketchPad.querySelector("#reset");
 reset.addEventListener("click", function (e) {
   let newSize = parseInt(prompt(`Enter new size (max. allowed ${MAX_SIZE})`));
 

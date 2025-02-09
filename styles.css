@@ -6,27 +6,48 @@
 }
 
 #sketch-pad {
+  margin: 0 auto;
   height: 100%;
+  aspect-ratio: 1 / 1;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
+/* Header */
+
+#header {
+  height: fit-content;
+  background-color: #f9d4c5;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+#header #reset {
+  border: none;
+  padding: 5px;
+  font-weight: 900;
+  background-color: #c5ebf9;
+}
+
+/* Container */
+
 #container {
-  height: 100%;
-  aspect-ratio: 1 / 1;
   background-color: #ebf9c5;
 
   display: flex;
   flex-direction: column;
 }
 
-.row {
+#container .row {
   flex: 1;
   display: flex;
 }
 
-.cell {
+#container .row .cell {
   flex: 1;
   border: 0.5px solid black;
 }

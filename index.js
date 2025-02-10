@@ -36,13 +36,12 @@ function generateContainer(size) {
   for (let x = 0; x < size; x++) {
     // Create rows
     let row = document.createElement("div");
-    row.setAttribute("x", `${x + 1}`); // provide unique cell position
     row.classList.add("row");
 
     for (let y = 0; y < size; y++) {
       // Create cells
       let cell = document.createElement("div");
-      cell.setAttribute("y", `${y + 1}`); // provide unique cell position
+      cell.setAttribute("id", `x${x + 1}y${y + 1}`); // provide unique cell position
       cell.classList.add("cell");
 
       // Add the cell to the corresponding row
@@ -59,6 +58,18 @@ function generateContainer(size) {
   // Set display
   let display = sketchPad.querySelector("#display");
   display.textContent = `Dimensions: ${size}x${size}`;
+
+  // Interactive cells
+  let cells = document.querySelectorAll(".cell");
+  cells.forEach(function (cell) {
+    cell.addEventListener("click", function (e) {
+      changeColor(e);
+    });
+
+    cell.addEventListener("contextmenu", function (e) {
+      changeShade(e);
+    });
+  });
 }
 
 // Initialise the container
@@ -69,10 +80,48 @@ const reset = sketchPad.querySelector("#reset");
 reset.addEventListener("click", function (e) {
   let newSize = parseInt(prompt(`Enter new size (max. allowed ${MAX_SIZE})`));
 
-  if (newSize <= MAX_SIZE) {
+  if (newSize <= MAX_SIZE && newSize > 0) {
     sketchPad.removeChild(container);
     generateContainer(newSize);
   } else {
     alert("Invalid input.");
   }
 });
+
+// Cell colors
+const COLORS = [
+  "", // no color
+  "rgb(148, 0, 211)", // violet
+  "rgb(75, 0, 130)", // indigo
+  "rgb(0, 0, 255)", // blue
+  "rgb(0, 255, 0)", // green
+  "rgb(255, 255, 0)", // yellow
+  "rgb(255, 127, 0)", // orange
+  "rgb(255, 0 , 0)", // red
+];
+
+// Disable context-menu open after a right click inside the sketch pad
+sketchPad.oncontextmenu = function (e) {
+  return false;
+};
+
+function changeColor(e) {
+  const color = e.target.style["background-color"];
+  const currentColor = COLORS.indexOf(color);
+  let nextColor = currentColor + 1;
+
+  e.target.style["background-color"] = COLORS[nextColor];
+}
+
+function changeShade(e) {
+  const shade = parseFloat(e.target.style["opacity"]);
+  let nextShade;
+
+  if (!shade || shade === 1) {
+    nextShade = 0.1;
+  } else {
+    nextShade = shade + 0.1;
+  }
+
+  e.target.style["opacity"] = nextShade.toString();
+}

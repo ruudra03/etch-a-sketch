@@ -20,15 +20,17 @@
 /* Header */
 
 #header {
-  height: fit-content;
-  background-color: #f9d4c5;
+  height: 30px;
+  border-bottom: 1px solid black;
+  background-color: burlywood;
 
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
 }
 
 #header #display {
+  padding-left: 5px;
   font-size: 18px;
 }
 
@@ -36,13 +38,14 @@
   border: none;
   padding: 0 10px;
   font-weight: 900;
-  background-color: #d4c5f9;
+  color: white;
+  background-color: brown;
 }
 
 /* Container */
 
 #container {
-  background-color: #ebf9c5;
+  background-color: aliceblue;
 
   display: flex;
   flex-direction: column;
@@ -55,9 +58,8 @@
 
 #container .row .cell {
   flex: 1;
-  border: 0.5px solid black;
 }
 
 .cell:hover {
-  background-color: #c5ebf9;
+  border: 1px solid burlywood;
 }
